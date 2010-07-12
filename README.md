@@ -6,7 +6,7 @@ A sample sinatra app based on the [paperboy gem](http://github.com/tpm/paperboy)
 
 Paperboy aggregates stories from chartbeat's `snapshots` endpoint over a given time period and scrapes the URLs for META tags containing images and blurbs to create ready-made or templateable emails. 
 
-Paperboy_distributor is a frontend for Paperboy. It uses JavaScript to generate a range of time periods over the past several days to get newsletters from. This is essentially the app we now use at TPM to generate our [DayBreaker  emails](http://dl.dropbox.com/u/715596/Picture%20799.png). 
+Paperboy_distributor is a frontend for Paperboy. It uses JavaScript to generate a range of time period options over the past several days to pull stories from. It then provides a preview, and a textarea of code for editors to use to produce a daily email. This is essentially the app we now use at TPM for our [DayBreaker  emails](http://dl.dropbox.com/u/715596/Picture%20799.png). 
 
 ## Install and use
 
@@ -14,7 +14,7 @@ Make sure you have Sinatra (`sudo gem install sinatra`) and Paperboy (`sudo gem 
 
 `git clone git://github.com/tpm/paperboy_distributor`
 `cd paperboy_distributor`
-`mv opts.yml.sample opts.yml` and fill in your chartbeat credentials and xpath prefs (for slurping up images and descriptions from META tags)
+Rename `opts.yml.sample` to `opts.yml`, fill in your chartbeat credentials and xpath prefs (for slurping up images and descriptions from META tags)
 
 open `paperboy_distributor.rb` and fill in custom [filters](http://github.com/tpm/stats\_combiner/blob/master/README.md).
 
