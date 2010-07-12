@@ -12,11 +12,11 @@ Paperboy_distributor is a frontend for Paperboy. It uses JavaScript to generate 
 
 Make sure you have Sinatra (`sudo gem install sinatra`) and Paperboy (`sudo gem install paperboy`)
 
-`git clone git://github.com/tpm/paperboy_distributor`
-`cd paperboy_distributor`
+`git clone git://github.com/tpm/paperboy_distributor`  
+`cd paperboy_distributor`  
 Rename `opts.yml.sample` to `opts.yml`, fill in your chartbeat credentials and xpath prefs (for slurping up images and descriptions from META tags)
 
-open `paperboy_distributor.rb` and fill in custom [filters](http://github.com/tpm/stats\_combiner/blob/master/README.md).
+Open `paperboy_distributor.rb` and fill in custom [filters](http://github.com/tpm/stats\_combiner/blob/master/README.md).
 
 The `views/paperboy_tmpl.erb` file is the template file Paperboy will run stories through. It's currently set up with our DayBreaker template. The template loops through a `@stories` array. Each item in the array has the components: 
 
@@ -25,7 +25,7 @@ The `views/paperboy_tmpl.erb` file is the template file Paperboy will run storie
     item[:img]
     item[:blurb]
 
-See a sample bare-bones structure [here](http://tpm.github.com/paperboy/#section-20).
+See a sample bare-bones structure  [here](http://tpm.github.com/paperboy/#section-20).
 
 Run app with `ruby paperboy_distributor.rb`
 Open browser to http://localhost:4567
