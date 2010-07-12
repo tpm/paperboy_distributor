@@ -1,0 +1,37 @@
+<div style="font-family:Helvetica,arial,sans-serif;">
+
+  <div style="width:600px;padding-top:10px;padding-bottom:10px;">
+    <div style="font-weight:bold;font-size:16px;padding:0;padding-left:25px;padding-bottom:8px;margin:0;"><span style="color:#990000;">TPM</span> DayBreaker</span>&nbsp;&nbsp;&nbsp;<span style="font-family:Georgia,Times,serif;font-size:12px;"><%= Time.now.strftime("%B %e, %Y") %></div>
+  <div style="font-family:Georgia,Times,serif;font-size:12px;padding:0;padding-left:25px;margin:0;">  
+    Good morning,<br />
+    Welcome to TPM's DayBreaker for <%= Time.now.strftime("%A, %B %e") %>. Here's what we're tracking today:
+    </div>
+  </div>
+  
+<table width="600" style="padding:10px 20px 10px 20px;">
+
+<% @stories.each_with_index do |story,idx| %>
+  <tr class="pb_story_<%= idx %>">
+    <td valign="top" style="padding-right:15px;padding-bottom:20px;">
+    
+      <a href="<%= story[:url] %>"><img style="border:1px solid #f0f0f0;padding:6px" src="<% if not story[:img].empty? %><%= story[:img] %><% else %>http://profile.ak.fbcdn.net/object3/1343/106/n98658495398_8771.jpg<% end %>" border="0" width="150"></a>
+    
+    </td>
+    
+    <td valign="top">
+    <h2 style="font-size:14px;border-top:1px solid #cecece;padding-top:5px;margin-top:0;"><a href="<%= story[:url] %>" style="color:#990000;text-decoration:none;"><%= story[:hed] %></a></h2>
+       
+    <% if not story[:blurb].empty? %>
+      <div class="blurb" style="font-family:Georgia,Times,serif;font-size:12px;"><%= story[:blurb] %> <a href="<%= story[:url] %>" style="color:#990000;text-decoration:none;">Read more &raquo;</a></div>
+    <% end %>
+    </td>
+ 
+   </tr>
+ 
+<% end %>
+
+</table>
+
+  <div style="font-family:Georgia,Times,serif;font-size:12px;padding:0;padding-left:25px;margin:0;">-- The TPM Team</div>
+
+</div>

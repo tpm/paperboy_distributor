@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title><%= @page_title %></title>
+<style>
+#notice { display:none;font-family:Helvetica,arial,sans-serif;margin:200px auto 0;padding:10px;background:#f0f0f0;border-bottom:1px solid #000;border-top:1px solid #000;width:200px;}
+#gimmecode {position:fixed;width:100%;padding:5px;opacity:.8;background-color:#000;color:#fff;}
+#greeting { font-family:Helvetica,arial,sans-serif;text-align:center;margin-top:200px; }
+#greeting h1 {font-size:20px;padding:0;margin:0; }
+</style>
+</head>
+<body>
+
+<%= yield %>
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript">
+
+Paperboy = { 
+
+    buildURL : function(first_time,second_time) {
+      var url = "from/"+first_time+"/to/"+second_time;
+      return url;
+  }
+   
+};
+
+
+Time = {
+  now : function() {  
+    return Math.floor(new Date().getTime() / 1000);
+  },
+  altStartTime : function(start_time) {
+    return (this.now() - start_time);
+  },
+  fourHoursBefore : function(start_time) {  
+    return start_time - 14400;
+  },
+  populateStartTimes : function(human_time) {
+   switch(human_time) {
+    case 'now':
+      return this.now();
+      break;
+    case 'yesterday':
+      return this.now() - 86400;
+      break;
+    case 'twoDaysAgo':
+      return this.now() - 172800;
+      break;
+    case 'threeDaysAgo':
+      return this.now() - 259200;
+      break;
+    case 'fourDaysAgo':
+      return this.now() - 345600;
+      break;
+    }
+  },
+  humanDay : function(time) {
+    var d = new Date(time * 1000);
+    day_int = d.getDay();
+    switch(day_int) {
+      case 0:
+        return "Sunday";
+        break;
+      case 1:
+        return "Monday";
+        break;
+      case 2:
+        return "Tuesday";
+        break;
+      case 3:
+        return "Wednesday";
+        break;
+      case 4:
+        return "Thursday";
+        break;
+      case 5:
+        return "Friday";
+        break;
+      case 6:
+        return "Saturday";
+        break;
+    }
+  }
+};
+
+// init
+
+$(document).ready(function() {
+
+$("#time_links a").each(function() {
+  period = $(this).attr("class");
+  end_time = Time.populateStartTimes(period);
+  start_time = Time.fourHoursBefore(end_time); 
+
+  $("a."+period).attr("href",Paperboy.buildURL(start_time,end_time));
+  if (end_time < Time.populateStartTimes('yesterday')) {
+    $(this).html(Time.humanDay(end_time));
+  }
+});
+
+  $("a").click(function() {
+    $("#notice").show();
+    $("#greeting").hide();
+  });
+});
+
+
+
+</script>
+</body>
+</html>
